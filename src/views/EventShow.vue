@@ -18,9 +18,9 @@
 
     <h2>
       Attendees
-      <span class="badge -fill-gradient">{{
-        event.attendees ? event.attendees.length : 0
-      }}</span>
+      <span class="badge -fill-gradient">
+        {{ event.attendees ? event.attendees.length : 0 }}
+      </span>
     </h2>
     <ul class="list-group">
       <li
@@ -37,14 +37,15 @@
 import EventService from '@/services/EventService.js'
 
 export default {
-  props: ['id'],
+  //props: ['id'],
   data() {
     return {
       event: {}
     }
   },
   created() {
-    EventService.getEvent(this.id)
+    const id = this.$route.params.id
+    EventService.getEvent(id)
       .then(response => {
         this.event = response.data
       })
